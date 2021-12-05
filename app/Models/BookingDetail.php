@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Booking_Detail extends Model
+class BookingDetail extends Model
 {
     protected $table = 'booking_details';
     protected $fillable = [

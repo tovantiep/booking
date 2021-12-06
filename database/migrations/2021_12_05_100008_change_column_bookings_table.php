@@ -27,7 +27,8 @@ class ChangeColumnBookingsTable extends Migration
     public function down()
     {
         Schema::table('bookings', function (Blueprint $table) {
-            //
+             $table->renameColumn('check_in', 'checkIn');
+             $table->renameColumn('check_out', 'checkOut');
         });
     }
 }

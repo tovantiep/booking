@@ -19,9 +19,4 @@ Route::get('/', function () {
     return view('welcome');
 
 });
-Route::prefix('admin')->group(function(){
-    Route::get('home',[HomeController::class, 'home'])->name('admin.home.home');
-});
-Route::prefix('user')->group(function(){
-    Route::get('home',[UserController::class, 'home'])->name('user.home.home');
-});
+

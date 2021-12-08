@@ -10,6 +10,11 @@ const mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
-
-mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+mix.js('resources/js/datatables-simple-demo.js', 'public/admin/js')
+    .js('resources/js/scripts.js', 'public/admin/js')
+    .js('resources/js/chart-area-demo.js', 'public/admin/assets/demo')
+    .js('resources/js/chart-bar-demo.js', 'public/admin/assets/demo')
+    .js('resources/js/chart-pie-demo.js', 'public/admin/assets/demo')
+    .js('resources/js/datatables-demo.js', 'public/admin/assets/demo')
+    .sass('resources/sass/styles.scss', 'public/admin/css');
+mix.copyDirectory('resources/user', 'public/user');

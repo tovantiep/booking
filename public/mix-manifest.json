@@ -1,9 +1,10 @@
 {
+    "/admin/js/datatables-simple-demo.js": "/admin/js/datatables-simple-demo.js",
+    "/admin/js/scripts.js": "/admin/js/scripts.js",
     "/admin/assets/demo/chart-area-demo.js": "/admin/assets/demo/chart-area-demo.js",
     "/admin/assets/demo/chart-bar-demo.js": "/admin/assets/demo/chart-bar-demo.js",
     "/admin/assets/demo/chart-pie-demo.js": "/admin/assets/demo/chart-pie-demo.js",
     "/admin/assets/demo/datatables-demo.js": "/admin/assets/demo/datatables-demo.js",
-    "/admin/js/datatables-simple-demo.js": "/admin/js/datatables-simple-demo.js",
     "/admin/css/styles.css": "/admin/css/styles.css",
-    "/admin/js/scripts.js": "/admin/js/scripts.js"
+    "/user/style.css": "/user/style.css"
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,5 +20,8 @@ Route::get('/', function () {
 
 });
 Route::prefix('admin')->group(function(){
-    Route::get('home',[HomeController::class, 'home'])->name('admin.hone.home');
+    Route::get('home',[HomeController::class, 'home'])->name('admin.home.home');
+});
+Route::prefix('user')->group(function(){
+    Route::get('home',[UserController::class, 'home'])->name('user.home.home');
 });

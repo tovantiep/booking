@@ -18,9 +18,9 @@ Route::get('/', function () {
 
 });
 Route::group(['prefix'=>'admin','as'=>'admin.'], function(){
-    Route::get('home',['as'=>'home', 'uses'=>'Admin\HomeController@home']);
+    Route::get('home',['name'=>'home', 'uses'=>'Admin\HomeController@home']);
 });
 Route::group(['prefix'=>'user','as'=>'user.'], function(){
-    Route::get('home',['as'=>'home', 'uses'=>'User\UserController@home']);
+    Route::get('home',['name'=>'home', 'uses'=>'User\UserController@home']);
 });
 

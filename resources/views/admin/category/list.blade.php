@@ -8,7 +8,7 @@ Category
         <div class="container-fluid px-4">
             <h1 class="mt-4">Category</h1>
             <br>
-            <a href="{{route('admin.category.create')}}" class="btn btn-success btn-xs">Thêm</a>
+            <a href="{{route('admin.category.create')}}" class="btn btn-success btn-xs">Add New</a>
           <hr>
             <ol class="breadcrumb mb-4">
                @if(session('success'))
@@ -26,7 +26,7 @@ Category
                     <table id="datatablesSimple">
                         <thead>
                             <tr>
-                                <th>Stt</th>
+                                <th>ID</th>
                                 <th>Name</th>
                                 <th>Created date</th>
                                 <th>Delete</th>
@@ -40,10 +40,10 @@ Category
                                 <td>{{$category->name}}</td>
                                 <td>{{$category->created_at}}</td>
                                 <td >
-                                    <a href="{{route('admin.category.delete', $category->id)}}" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> Xóa</a>
+                                    <a href="{{route('admin.category.delete', $category->id)}}" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> Delete</a>
                                 </td>
                                 <td>
-                                    <a href="{{route('admin.category.edit', $category->id)}}" class="btn btn-success btn-xs"><i class="fas fa-edit"></i>Sửa</a>
+                                    <a href="{{route('admin.category.edit', $category->id)}}" class="btn btn-success btn-xs"><i class="fas fa-edit"></i>Edit</a>
                                 </td>
                             </tr>
                             @endforeach

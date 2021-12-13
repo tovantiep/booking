@@ -27,6 +27,14 @@ Route::group(['prefix'=>'admin','as'=>'admin.'], function(){
         Route::put('update/{id}',['name'=>'update', 'uses'=>'Admin\CategoryController@update'])->name('update');
         Route::get('delete/{id}',['name'=>'delete', 'uses'=>'Admin\CategoryController@delete'])->name('delete');
     });
+    Route::group(['prefix'=>'room','as'=>'room.'], function(){
+        Route::get('index',['name'=>'index', 'uses'=>'Admin\RoomController@index'])->name('index');
+        Route::get('create',['name'=>'create', 'uses'=>'Admin\RoomController@create'])->name('create');
+        Route::post('store',['name'=>'store', 'uses'=>'Admin\RoomController@store'])->name('store');
+        Route::get('edit/{id}',['name'=>'edit', 'uses'=>'Admin\RoomController@edit'])->name('edit');
+        Route::put('update/{id}',['name'=>'update', 'uses'=>'Admin\RoomController@update'])->name('update');
+        Route::get('delete/{id}',['name'=>'delete', 'uses'=>'Admin\RoomController@delete'])->name('delete');
+    });
     Route::get('home',['name'=>'home', 'uses'=>'Admin\HomeController@home'])->name('home');
 });
 

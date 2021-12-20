@@ -16,8 +16,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-
 });
+Route::get('login',['uses'=>'Admin\AuthController@login'])->name('auth.login');
+Route::post('login',['uses'=>'Admin\AuthController@checkLogin'])->name('check.login');
+Route::get('register',['uses'=>'Admin\AuthController@register'])->name('auth.register');
+Route::post('register',['uses'=>'Admin\AuthController@checkRegister'])->name('check.register');
+Route::get('logout',['uses'=>'Admin\AuthController@logout'])->name('auth.logout');
+
 Route::group(['prefix'=>'admin','as'=>'admin.'], function(){
     Route::group(['prefix'=>'category','as'=>'category.'], function(){
         Route::get('index',['name'=>'index', 'uses'=>'Admin\CategoryController@index'])->name('index');

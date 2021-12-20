@@ -19,14 +19,8 @@ class CategoryController extends Controller
     } 
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'name' => 'required|unique:categories,name'
-        ],[
-            'name.required' => 'Không được để trống',
-            'name.unique' => 'Danh mục đã tồn tại'
-        ]);
       $category = new Category();
-      $category->name = $data['name'];
+      $category->name = $request->name;
       $category->save();
       return redirect()->route('admin.category.index')->with('success', 'Thêm thành công ');
     }
@@ -37,12 +31,6 @@ class CategoryController extends Controller
     }
     public function update(Request $request, $id)
     {
-        $data = $request->validate([
-            'name' => 'required|unique:categories,name'
-        ],[
-            'name.required' => 'Không được để trống',
-            'name.unique' => 'Danh mục đã tồn tại'
-        ]);
       $category = Category::find($id);
       $category->update([
         'name' => $request->name

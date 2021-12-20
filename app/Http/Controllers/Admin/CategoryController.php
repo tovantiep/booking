@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use  App\Http\Requests\Category\CreateCategoryRequest;
+use  App\Http\Requests\Category\UpdateCategoryRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class CategoryController extends Controller
     {
         return view('admin.category.create');
     } 
-    public function store(Request $request)
+    public function store(CreateCategoryRequest $request)
     {
       $category = new Category();
       $category->name = $request->name;
@@ -29,7 +30,7 @@ class CategoryController extends Controller
         $category = Category::find($id);
         return view('admin.category.edit', compact('category'));
     }
-    public function update(Request $request, $id)
+    public function update(UpdateCategoryRequest $request, $id)
     {
       $category = Category::find($id);
       $category->update([

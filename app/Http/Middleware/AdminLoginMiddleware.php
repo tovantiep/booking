@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Middleware;
-
+use App\Models\User;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,7 +17,7 @@ class AdminLoginMiddleware
     public function handle($request, Closure $next)
     {
         if (Auth::check()) {
-          if (Auth::user()->role) {
+          if (Auth::user()->role == User::ROLE) {
             return $next($request);
           }
           return redirect()->route('user.home');

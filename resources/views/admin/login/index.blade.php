@@ -28,21 +28,21 @@
                                                 </div>
                                             @endif
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" name="email" id="inputEmail" type="email" placeholder="name@example.com" />
+                                                <input class="form-control" name="email" id="email" type="email" placeholder="name@example.com" />
                                                 <label for="inputEmail">Email address</label>
                                                @error('email')
                                                    {{$message}}
                                                @enderror
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" name="password" id="inputPassword" type="password" placeholder="Password" />
+                                                <input class="form-control" name="password" id="password" type="password" placeholder="Password" />
                                                 <label for="inputPassword">Password</label>
                                                 @error('password')
                                                 {{$message}}
                                             @enderror
                                             </div>
                                             <div class="form-check mb-3">
-                                                <input class="form-check-input" id="inputRememberPassword" type="checkbox" name="remember" value="remember" />
+                                                <input class="form-check-input" id="remember" type="checkbox" name="remember" value="remember" />
                                                 <label class="form-check-label" for="inputRememberPassword">Remember Me</label>
                                             </div>
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">

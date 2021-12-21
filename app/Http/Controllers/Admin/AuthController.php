@@ -17,7 +17,7 @@ class AuthController extends Controller
     }
     public function checkLogin(LoginRequest $request)
     {
-        $remember = $request->has('remember')?true:false;
+        $remember = $request->has('remember');
         if(Auth::attempt(['email'=>$request->email, 'password'=>$request->password], $remember)){
             return redirect()->route('admin.home');
         }

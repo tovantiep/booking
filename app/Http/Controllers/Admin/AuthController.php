@@ -19,9 +19,12 @@ class AuthController extends Controller
     {
         $remember = $request->has('remember');
         if(Auth::attempt(['email'=>$request->email, 'password'=>$request->password], $remember)){
-            return redirect()->route('admin.home');
+            if (Auth::user()->role == User::ADMIN_ROLE) {
+                return redirect()->route('admin.home');
+              }
+              return redirect()->route('user.home');
         }
-        return redirect()->route('auth.login')->with('error', 'Dang nhap that bai');
+        return redirect()->route('auth.login')->with('error', 'Sai tài khoản hoặc mật khẩu');
     }
     public function register()
     {

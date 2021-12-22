@@ -33,6 +33,14 @@ use Illuminate\Support\Facades\Route;
                 Route::put('update/{id}',['uses'=>'Admin\CategoryController@update'])->name('update');
                 Route::get('delete/{id}',['uses'=>'Admin\CategoryController@delete'])->name('delete');
             });
+            Route::group(['prefix'=>'room','as'=>'room.'], function(){
+                Route::get('index',['uses'=>'Admin\RoomController@index'])->name('index');
+                Route::get('create',['uses'=>'Admin\RoomController@create'])->name('create');
+                Route::post('store',['uses'=>'Admin\RoomController@store'])->name('store');
+                Route::get('edit/{id}',['uses'=>'Admin\RoomController@edit'])->name('edit');
+                Route::put('update/{id}',['uses'=>'Admin\RoomController@update'])->name('update');
+                Route::get('delete/{id}',['uses'=>'Admin\RoomController@delete'])->name('delete');
+            });
         Route::get('home',['uses'=>'Admin\HomeController@home'])->name('home');
     });
 

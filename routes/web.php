@@ -14,24 +14,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-
-});
-Route::group(['prefix'=>'admin','as'=>'admin.'], function(){
-    Route::group(['prefix'=>'category','as'=>'category.'], function(){
-        Route::get('index',['name'=>'index', 'uses'=>'Admin\CategoryController@index'])->name('index');
-        Route::get('create',['name'=>'create', 'uses'=>'Admin\CategoryController@create'])->name('create');
-        Route::post('store',['name'=>'store', 'uses'=>'Admin\CategoryController@store'])->name('store');
-        Route::get('edit/{id}',['name'=>'edit', 'uses'=>'Admin\CategoryController@edit'])->name('edit');
-        Route::put('update/{id}',['name'=>'update', 'uses'=>'Admin\CategoryController@update'])->name('update');
-        Route::get('delete/{id}',['name'=>'delete', 'uses'=>'Admin\CategoryController@delete'])->name('delete');
+    Route::get('/', function () {
+        return view('welcome');
     });
-    Route::get('home',['name'=>'home', 'uses'=>'Admin\HomeController@home'])->name('home');
-});
+    Route::get('login',['uses'=>'Admin\AuthController@login'])->name('auth.login');
+    Route::post('login',['uses'=>'Admin\AuthController@checkLogin'])->name('check.login');
+    Route::get('register',['uses'=>'Admin\AuthController@register'])->name('auth.register');
+    Route::post('register',['uses'=>'Admin\AuthController@checkRegister'])->name('check.register');
 
-Route::group(['prefix'=>'user','as'=>'user.'], function(){
-    Route::get('home',['name'=>'home', 'uses'=>'User\UserController@home']);
-});
+
+    Route::group(['prefix'=>'admin','middleware'=>'admin.login','as'=>'admin.'], function(){
+        Route::get('logout',['uses'=>'Admin\AuthController@logout'])->name('auth.logout');
+            Route::group(['prefix'=>'category','as'=>'category.'], function(){
+                Route::get('index',['uses'=>'Admin\CategoryController@index'])->name('index');
+                Route::get('create',['uses'=>'Admin\CategoryController@create'])->name('create');
+                Route::post('store',['uses'=>'Admin\CategoryController@store'])->name('store');
+                Route::get('edit/{id}',['uses'=>'Admin\CategoryController@edit'])->name('edit');
+                Route::put('update/{id}',['uses'=>'Admin\CategoryController@update'])->name('update');
+                Route::get('delete/{id}',['uses'=>'Admin\CategoryController@delete'])->name('delete');
+            });
+        Route::get('home',['uses'=>'Admin\HomeController@home'])->name('home');
+    });
+
+    Route::group(['prefix'=>'user','as'=>'user.'], function(){
+        Route::get('home',['uses'=>'User\UserController@home'])->name('home');
+    });
 
 

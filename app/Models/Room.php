@@ -10,7 +10,7 @@ class Room extends Model
     protected $fillable = [
         'category_id', 'branch', 'people', 'floor',
          'number_room', 'view_account', 'description', 'image',
-          'total_money', 'actual_total', 'payment_method', 'rating', 'status',
+          'total_money', 'rating', 'status',
 
     ];
 

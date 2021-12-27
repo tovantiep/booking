@@ -8,7 +8,7 @@ Room
         <div class="container-fluid px-4">
             <h1 class="mt-4">Room</h1>
             <br>
-            <a href="#" class="btn btn-success btn-xs">Add New</a>
+            <a href="{{route('admin.room.create')}}" class="btn btn-success btn-xs">Add New</a>
           <hr>
             <ol class="breadcrumb mb-4">
                @if(session('success'))
@@ -29,27 +29,36 @@ Room
                                 <th>ID</th>
                                 <th>NumBer Room</th>
                                 <th>Floor</th>
-                                <th>Total</th>
-                                <th>Description</th>
+                                <th>Room Type</th>
+                                <th>Views</th>
+                                <th>Rating</th>
+                                <th>Branch</th>
+                                <th>Price</th>
                                 <th>Status</th>
                                 <th>Delete</th>
                                 <th>Edit</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach($categories as $category)
+                            @foreach($rooms as $room)
                             <tr>
-                                <td>{{$category->id}}</td>
-                                <td>{{$category->name}}</td>
-                                <td>{{$category->created_at}}</td>
+                                <td>{{$room->id}}</td>
+                                <td>{{$room->number_room}}</td>
+                                <td>{{$room->floor}}</td>
+                                <td>{{$room->category->name}}</td>
+                                <td>{{$room->view_account}}</td>
+                                <td>{{$room->rating}}</td>
+                                <td>{{$room->branch}}</td>
+                                <td>{{$room->total_money}}</td>
+                                <td>{{$room->status == 0 ? "Còn trống" : "Đang cho thuê"}}</td>
                                 <td >
-                                    <a href="{{route('admin.category.delete', $category->id)}}" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> Delete</a>
+                                    <a href="{{route('admin.room.delete', $room->id)}}" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> Delete</a>
                                 </td>
                                 <td>
-                                    <a href="{{route('admin.category.edit', $category->id)}}" class="btn btn-success btn-xs"><i class="fas fa-edit"></i>Edit</a>
+                                    <a href="{{route('admin.room.edit', $room->id)}}" class="btn btn-success btn-xs"><i class="fas fa-edit"></i>Edit</a>
                                 </td>
                             </tr>
-                            @endforeach --}}
+                            @endforeach
                         </tbody>
                     </table>
                     

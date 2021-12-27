@@ -8,7 +8,7 @@ class BookingDetail extends Model
 {
     protected $table = 'booking_details';
     protected $fillable = [
-        'room_id', 'booking_id', 'quantity',
+        'room_id', 'booking_id', 'quantity', 'actual_total', 'payment_method'
 
     ];
 

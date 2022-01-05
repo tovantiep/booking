@@ -37,16 +37,17 @@ class RoomController extends Controller
                 $file->move('image/post', $image);
             }
       }
-      $room = new Room();
-      $room->category_id = $request->category_id;
-      $room->branch = $request->branch;
-      $room->people = $request->people;
-      $room->floor = $request->floor;
-      $room->number_room = $request->number_room;
-      $room->total_money = $request->total_money;
-      $room->image = $image;
-      $room->description = $request->description;
-      $room->save();
+      Room::create([
+            'category_id' => $request->category_id,
+           'branch' => $request->branch,
+            'people' => $request->people,
+           'floor' => $request->floor,
+            'number_room' => $request->number_room,
+            'total_money' => $request->total_money,
+            'image' => $image,
+            'description' => $request->description,
+       
+       ]);
       return redirect()->route('admin.room.index')->with('success', 'Thêm thành công ');
     }
     public function edit($id)

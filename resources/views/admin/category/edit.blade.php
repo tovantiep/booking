@@ -20,7 +20,7 @@ Create Category
             </ol>
             <div class="card mb-4">
                 <div class="col-lg-12">
-                    <form action="{{route('admin.category.update',$category->id)}}" method="POST">
+                    <form action="{{route('admin.category.update', $category->id)}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('put')
                         <div class="form-group">
@@ -29,6 +29,13 @@ Create Category
                         <br>
                         <div class="form-group">   
                             <input class="form-control" value="{{$category->name}}" name="name" type="text">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <h6 for="">Category Image</h6>     
+                        </div>
+                        <div class="form-group">   
+                            <input class="" name="image" type="file">
                         </div>
                         <br>
                         <button class="btn btn-success" type="submit">Update</button>

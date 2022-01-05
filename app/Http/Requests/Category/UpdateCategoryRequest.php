@@ -25,14 +25,16 @@ class UpdateCategoryRequest extends FormRequest
     {
         return 
             [
-                'name' => 'required|unique:categories,name'
+                'name' => 'required|unique:categories,name',
+                'image' => 'required',
             ];
     }
     public function Messages()
     {
       return [
             'name.required' => 'Không được để trống',
-            'name.unique' => 'Danh mục đã tồn tại'
+            'name.unique' => 'Danh mục đã tồn tại',
+            'image.required' => 'khong duoc de trong',
             ];
     }
 }

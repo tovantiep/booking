@@ -21,57 +21,47 @@ class CategoryController extends Controller
     } 
     public function store(CreateCategoryRequest $request)
     {
-      if ($request->hasFile('image')) {
-        $file = $request->file('image');
-        $name_file = $file->getClientOriginalName();
-        $extention = $file->getClientOriginalExtension();
-        if(strcasecmp($extention, 'jpg') == 0
-           || strcasecmp($extention, 'png') == 0
-           || strcasecmp($extention, 'jpeg') == 0) {
-               $image = Str::random(5)."_".$name_file;
-               while(file_exists("image/post".$image)){
-                   $image = Str::random(5)."_".$name_file;
-               }
-               $file->move('image/category', $image);
-           }
-     }
-     Category::create([
-      'name' => $request->name,
-      'image' => $image 
-     ]);
+     $category = new Category();
+     $category->name = $request->name;
+     $get_image = $request->image;
+     $path = 'admin/upload';
+     $get_name_image = $get_image->getClientOriginalName();
+     $name_image = current(explode('.', $get_name_image));
+     $new_image = $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
+     $get_image->move($path, $new_image);
+
+     $category->image = $new_image;
+     $category->save();
       return redirect()->route('admin.category.index')->with('success', 'Thêm thành công ');
     }
     public function edit($id)
     {
-        $category = Category::find($id);
+        $category = Category::findOrFail($id);
         return view('admin.category.edit', compact('category'));
     }
     public function update(UpdateCategoryRequest $request, $id)
     {
-      if ($request->hasFile('image')) {
-        $file = $request->file('image');
-        $name_file = $file->getClientOriginalName();
-        $extention = $file->getClientOriginalExtension();
-        if(strcasecmp($extention, 'jpg') == 0
-           || strcasecmp($extention, 'png') == 0
-           || strcasecmp($extention, 'jepg') == 0) {
-               $image = Str::random(5)."_".$name_file;
-               while(file_exists("image/post".$image)){
-                   $image = Str::random(5)."_".$name_file;
-               }
-               $file->move('image/category', $image);
-           }
-     }
-     $category = Category::find($id);
-      $category->update([
-        'name' => $request->name,
-        'image' => isset($image) ? $image : $category->image,
-      ]);
+     $category = Category::findOrFail($id);
+     $category->name = $request->name;
+     $get_image = $request->image;
+        if ($get_image) {
+            $path = 'admin/upload/'.$category->image;
+            if(file_exists($path)){
+                unlink($path);
+            }
+            $path = 'admin/upload/';
+            $get_name_image = $get_image->getClientOriginalName();
+            $name_image = current(explode('.', $get_name_image));
+            $new_image = $name_image.rand(0, 99).'.'.$get_image->getClientOriginalExtension();
+            $get_image->move($path, $new_image);
+            $category->image = $new_image;
+        }
+        $category->save();
       return redirect()->route('admin.category.index', $id)->with('success', 'Sửa thành công');
     }
     public function delete($id)
     {
-        $category = Category::find($id);
+        $category = Category::findOrFail($id);
         $category->delete();
         return redirect()->route('admin.category.index', $id)->with('success', 'Xóa thành công');
     }

@@ -39,7 +39,7 @@ Category
                             <tr>
                                 <td>{{$category->id}}</td>
                                 <td>{{$category->name}}</td>
-                                <td><img src="{{$category->imageUrl()}}" width="120px" height="auto"></td>
+                                <td><img src="{{asset('admin/upload/'.$category->image) }}" height="180" width="250" ></td>
                                 <td>{{$category->created_at}}</td>
                                 <td >
                                     <a href="{{route('admin.category.delete', $category->id)}}" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> Delete</a>

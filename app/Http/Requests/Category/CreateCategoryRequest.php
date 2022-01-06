@@ -26,7 +26,7 @@ class CreateCategoryRequest extends FormRequest
         return 
                 [
                     'name' => 'required|unique:categories,name',
-                    'image' => 'required',
+                    'image' => 'required|image|mimes:jpg,png,jpeg',
                 ];
     }
     public function Messages()
@@ -34,7 +34,9 @@ class CreateCategoryRequest extends FormRequest
       return [
             'name.required' => 'Không được để trống',
             'name.unique' => 'Danh mục đã tồn tại',
-            'image.required' => 'khong duoc de trong',
+            'image.required' => 'Không được để trống',
+            'image.image' => 'Ảnh không đúng định dạng',
+            'image.mimes' => 'File ảnh phải có đuôi là jpg, png, jpeg',
             ];
     }
 }

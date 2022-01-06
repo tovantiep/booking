@@ -28,24 +28,25 @@ class CreateRoomRequest extends FormRequest
             'floor' => 'required|integer',
             'number_room' => 'required|integer|digits_between:3,5',
             'total_money' => 'required|integer',
-            'image' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg|mimetypes:image/jpeg,image/png,image/jpg',
             'description' => 'required',
         ];
     }
     public function Messages()
     {
         return [
-            'people.required' => 'khong duoc de trong',
-            'people.integer' => 'dinh dang khong hop le',
-            'people.between:1,10' => 'So nguoi khong hop le',
-            'floor.required' => 'khong duoc de trong',
-            'floor.integer' => 'dinh dang khong hop le',
-            'number_room.required' => 'khong duoc de trong',
-            'number_room.digits_between:3,5' => 'dinh dang khong hop le',
-            'total_money.required' => 'khong duoc de trong',
-            'total_money.integer' => 'dinh dang khong hop le',
-            'image.required' => 'khong duoc de trong',
-            'description.required' => 'khong duoc de trong',
+            'people.required' => 'Không được để trống',
+            'people.integer' => 'Định dạng không hợp lệ',
+            'people.between:1,10' => 'Số người không hợp lệ',
+            'floor.required' => 'Không được để trống',
+            'floor.integer' => 'Định dạng không hợp lệ',
+            'number_room.required' => 'Không được để trống',
+            'number_room.digits_between:3,5' => 'Định dạng không hợp lệ',
+            'total_money.required' => 'Không được để trống',
+            'total_money.integer' => 'Định dạng không hợp lệ',
+            'image.required' => 'Không được để trống',
+            'image.image' => 'Ảnh không đúng định dạng',
+            'description.required' => 'Không được để trống',
           ];
     }
 }

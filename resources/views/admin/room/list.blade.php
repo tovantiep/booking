@@ -33,6 +33,7 @@ Room
                                 <th>Views</th>
                                 <th>Rating</th>
                                 <th>Branch</th>
+                                <th>Image</th>
                                 <th>Price</th>
                                 <th>Status</th>
                                 <th>Delete</th>
@@ -49,6 +50,7 @@ Room
                                 <td>{{$room->view_account}}</td>
                                 <td>{{$room->rating}}</td>
                                 <td>{{$room->branch}}</td>
+                                <td><img src="{{asset('admin/upload/'.$room->image) }}" height="180" width="250" ></td>
                                 <td>{{$room->total_money}}</td>
                                 <td>{{$room->status == 0 ? "Còn trống" : "Đang cho thuê"}}</td>
                                 <td >

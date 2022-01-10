@@ -20,7 +20,7 @@ Create Category
             </ol>
             <div class="card mb-4">
                 <div class="col-lg-12">
-                    <form action="{{route('admin.category.store')}}" method="POST">
+                    <form action="{{route('admin.category.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <h6 for="">Category Name</h6>     
@@ -28,6 +28,13 @@ Create Category
                         <br>
                         <div class="form-group">   
                             <input class="form-control" name="name" type="text">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <h6 for="">Category Image</h6>     
+                        </div>
+                        <div class="form-group">   
+                            <input class="" name="image" type="file">
                         </div>
                         <br>
                         <button class="btn btn-success" type="submit">Create</button>

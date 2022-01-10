@@ -28,6 +28,7 @@ Category
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>
+                                <th>Image</th>
                                 <th>Created date</th>
                                 <th>Delete</th>
                                 <th>Edit</th>
@@ -38,6 +39,7 @@ Category
                             <tr>
                                 <td>{{$category->id}}</td>
                                 <td>{{$category->name}}</td>
+                                <td><img src="{{asset('admin/upload/'.$category->image) }}" height="180" width="250" ></td>
                                 <td>{{$category->created_at}}</td>
                                 <td >
                                     <a href="{{route('admin.category.delete', $category->id)}}" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> Delete</a>

@@ -45,17 +45,17 @@ Home
                     <div class="col-md-4">
                         <div class="single-room">
                             <div class="room-img">
-                                <a href="#"><img src="{{$category->imageUrl()}}" alt=""></a>
+                                <a href="{{route('user.room')}}"><img src="{{asset('admin/upload/'.$category->image) }}" alt=""></a>
                             </div>
                             <div class="room-desc">
                                 <div class="room-name">
-                                    <h3><a href="#">{{$category->name}} </a></h3>
+                                    <h3><a href="{{route('user.room')}}">{{$category->name}} </a></h3>
                                 </div>
                                 <div class="room-rent">
                                     <h5>$ 200 / <span>Night</span></h5>
                                 </div>
                                 <div class="room-book">
-                                    <a href="#">Book now</a>
+                                    <a href="{{route('user.room')}}">Book now</a>
                                 </div>
                             </div>
                         </div>

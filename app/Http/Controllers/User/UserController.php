@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Room;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -15,6 +16,7 @@ class UserController extends Controller
     }
     public function listRoom()
     {
-      return view('user.room.list');
+      $rooms = Room::all();
+      return view('user.room.list', compact('rooms'));
     }
 }

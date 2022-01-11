@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Room;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -18,5 +19,10 @@ class UserController extends Controller
     {
       $rooms = Room::all();
       return view('user.room.list', compact('rooms'));
+    }
+    public function logout()
+    {
+       Auth::logout();
+       return redirect()->route('user.home');
     }
 }

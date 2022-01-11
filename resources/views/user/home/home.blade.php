@@ -5,7 +5,7 @@ Home
 
 @section('content')
  <!--About Section Title start-->
- <div class="about-section text-center ptb-80 white_bg">
+ {{-- <div class="about-section text-center ptb-80 white_bg">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -25,7 +25,7 @@ Home
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <!--About Section end-->
 <!--Our Room start-->
 <div class="our-room text-center ptb-80 white-bg">
@@ -169,7 +169,7 @@ Home
 </div>
 <!--Our services end-->
 <!--Our staff start-->
-<div class="our-staff text-center pb-80 white_bg">
+{{-- <div class="our-staff text-center pb-80 white_bg">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -403,7 +403,7 @@ Home
         </div>
     </div>
 
-</div>
+</div> --}}
 <!--Our staff end-->
 <!--Testimonial start-->
 <div class="staff-tesimonial text-center white_bg">

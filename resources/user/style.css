@@ -191,7 +191,7 @@ img {
 /*----------------------------------------*/
 
 .header-section {
-    background: url(images/bg/lhw2mk.jpg)no-repeat scroll center center;
+    background: url("images/bg/lhw2mk.jpg")no-repeat scroll center center;
     background-size: cover;
 }
 

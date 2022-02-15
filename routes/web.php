@@ -46,6 +46,8 @@ use Illuminate\Support\Facades\Route;
 
     Route::group(['prefix'=>'user','as'=>'user.'], function(){
         Route::get('home',['uses'=>'User\UserController@home'])->name('home');
+        Route::get('room',['uses'=>'User\UserController@listRoom'])->name('room');
+        Route::get('logout',['uses'=>'User\UserController@logout'])->name('auth.logout');
     });
 
 

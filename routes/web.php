@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,16 +14,19 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-    Route::get('/', function () {
-        return view('welcome');
-    });
     Route::get('login',['uses'=>'Admin\AuthController@login'])->name('auth.login');
     Route::post('login',['uses'=>'Admin\AuthController@checkLogin'])->name('check.login');
     Route::get('register',['uses'=>'Admin\AuthController@register'])->name('auth.register');
     Route::post('register',['uses'=>'Admin\AuthController@checkRegister'])->name('check.register');
+    
+    Route::group(['middleware' => ['auth']], function() {
+        Route::get('/email/verify', 'VerificationController@show')->name('verification.notice');
+        Route::get('/email/verify/{id}/{hash}', 'VerificationController@verify')->name('verification.verify')->middleware(['signed']);
+        Route::post('/email/resend', 'VerificationController@resend')->name('verification.resend');
+    });
 
-
+Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['verified']], function () {
     Route::group(['prefix'=>'admin','middleware'=>'admin.login','as'=>'admin.'], function(){
         Route::get('logout',['uses'=>'Admin\AuthController@logout'])->name('auth.logout');
             Route::group(['prefix'=>'category','as'=>'category.'], function(){
@@ -42,7 +46,7 @@ use Illuminate\Support\Facades\Route;
                 Route::get('delete/{id}',['uses'=>'Admin\RoomController@delete'])->name('delete');
             });
         Route::get('home',['uses'=>'Admin\HomeController@home'])->name('home');
-    });
+        });
 
     Route::group(['prefix'=>'user','as'=>'user.'], function(){
         Route::get('home',['uses'=>'User\UserController@home'])->name('home');
@@ -50,5 +54,6 @@ use Illuminate\Support\Facades\Route;
         Route::get('booking',['uses'=>'User\UserController@booking'])->name('booking');
         Route::get('logout',['uses'=>'User\UserController@logout'])->name('auth.logout');
     });
-
+}); 
+});
 

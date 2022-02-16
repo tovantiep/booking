@@ -20,6 +20,11 @@ class UserController extends Controller
       $rooms = Room::all();
       return view('user.room.list', compact('rooms'));
     }
+    public function booking()
+    {
+      $rooms = Room::all();
+      return view('user.room.booking', compact('rooms'));
+    }
     public function logout()
     {
        Auth::logout();

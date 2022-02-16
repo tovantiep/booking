@@ -1,27 +1,33 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
-
+use Illuminate\Auth\Events\Registered;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
     public function login()
     {
+        if (Auth::check()) {
+            if (Auth::user()->role == User::ADMIN_ROLE) {
+                return redirect()->route('admin.home');
+            }elseif(Auth::user()->role == User::USER_ROLE) {
+                return redirect()->route('user.home');
+            }
+        }
         return view('admin.login.index');
     }
     public function checkLogin(LoginRequest $request)
     {
         $remember = $request->has('remember');
-        if(Auth::attempt(['email'=>$request->email, 'password'=>$request->password], $remember)){
+        if(Auth::attempt(['email'=>$request->email, 'password'=>$request->password], $remember)) {
+
             if (Auth::user()->role == User::ADMIN_ROLE) {
                 return redirect()->route('admin.home');
-              }
+            }
               return redirect()->route('user.home');
         }
         return redirect()->route('auth.login')->with('error', 'Sai tài khoản hoặc mật khẩu');
@@ -38,13 +44,14 @@ class AuthController extends Controller
         $user->password = bcrypt($request->password);
         $user->phone = $request->phone;
         $user->address = $request->address;
-        $user->role = $request->role;
         $user->save();
+        event(new Registered($user));
+        auth()->login($user);
         return redirect()->route('auth.login');
     }
     public function logout()
     {
-       Auth::logout();
-       return redirect()->route('auth.login');
+        Auth::logout();
+        return redirect()->route('auth.login');
     }
 }

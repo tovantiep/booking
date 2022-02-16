@@ -12,7 +12,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-       $categories = Category::all();
+        $categories = Category::all();
         return view('admin.category.list', compact('categories'));
     }
     public function create()
@@ -21,18 +21,18 @@ class CategoryController extends Controller
     } 
     public function store(CreateCategoryRequest $request)
     {
-     $category = new Category();
-     $category->name = $request->name;
-     $get_image = $request->image;
-     $path = 'admin/upload';
-     $get_name_image = $get_image->getClientOriginalName();
-     $name_image = current(explode('.', $get_name_image));
-     $new_image = $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
-     $get_image->move($path, $new_image);
+        $category = new Category();
+        $category->name = $request->name;
+        $get_image = $request->image;
+        $path = 'admin/upload';
+        $get_name_image = $get_image->getClientOriginalName();
+        $name_image = current(explode('.', $get_name_image));
+        $new_image = $name_image.rand(0, 99).'.'.$get_image->getClientOriginalExtension();
+        $get_image->move($path, $new_image);
 
-     $category->image = $new_image;
-     $category->save();
-      return redirect()->route('admin.category.index')->with('success', 'Thêm thành công ');
+        $category->image = $new_image;
+        $category->save();
+        return redirect()->route('admin.category.index')->with('success', 'Thêm thành công ');
     }
     public function edit($id)
     {
@@ -41,12 +41,12 @@ class CategoryController extends Controller
     }
     public function update(UpdateCategoryRequest $request, $id)
     {
-     $category = Category::findOrFail($id);
-     $category->name = $request->name;
-     $get_image = $request->image;
+        $category = Category::findOrFail($id);
+        $category->name = $request->name;
+        $get_image = $request->image;
         if ($get_image) {
             $path = 'admin/upload/'.$category->image;
-            if(file_exists($path)){
+            if(file_exists($path)) {
                 unlink($path);
             }
             $path = 'admin/upload/';
@@ -57,7 +57,7 @@ class CategoryController extends Controller
             $category->image = $new_image;
         }
         $category->save();
-      return redirect()->route('admin.category.index', $id)->with('success', 'Sửa thành công');
+        return redirect()->route('admin.category.index', $id)->with('success', 'Sửa thành công');
     }
     public function delete($id)
     {

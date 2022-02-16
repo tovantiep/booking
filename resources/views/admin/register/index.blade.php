@@ -70,14 +70,14 @@
                                                     {{$message}}
                                                 @enderror
                                                 </div>
-                                                <div class="col-md-6">
+                                                {{-- <div class="col-md-6">
                                                     <div class="form-floating mb-3 mb-md-0">
                                                         <select name="role" class="form-control" id="inputPassword"  placeholder="Create a password" >
                                                             <option value="0">User</option>
                                                         </select>
                                                         <label >role</label>
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                             </div>
                                             <div class="row mb-3">
                                                 <div class="col-md-6">

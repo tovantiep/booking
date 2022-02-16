@@ -27,7 +27,7 @@ Room
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>NumBer Room</th>
+                                <th>Room</th>
                                 <th>Floor</th>
                                 <th>Room Type</th>
                                 <th>Views</th>
@@ -37,7 +37,8 @@ Room
                                 <th>Price</th>
                                 <th>Status</th>
                                 <th>Delete</th>
-                                <th>Edit</th>
+                                {{-- <th>Edit</th>
+                                <th>Detail</th> --}}
                             </tr>
                         </thead>
                         <tbody>
@@ -50,14 +51,12 @@ Room
                                 <td>{{$room->view_account}}</td>
                                 <td>{{$room->rating}}</td>
                                 <td>{{$room->branch}}</td>
-                                <td><img src="{{asset('admin/upload/'.$room->image) }}" height="180" width="250" ></td>
+                                <td><img src="{{asset('admin/upload/'.$room->image) }}" height="150" width="200" ></td>
                                 <td>{{$room->total_money}}</td>
-                                <td>{{$room->status == 0 ? "Còn trống" : "Đang cho thuê"}}</td>
-                                <td >
-                                    <a href="{{route('admin.room.delete', $room->id)}}" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> Delete</a>
-                                </td>
+                                <td>{{$room->status == 0 ? "Có sẵn" : "Đang cho thuê"}}</td>
                                 <td>
-                                    <a href="{{route('admin.room.edit', $room->id)}}" class="btn btn-success btn-xs"><i class="fas fa-edit"></i>Edit</a>
+                                    <a href="{{route('admin.room.delete', $room->id)}}" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i></a>
+                                    <a href="{{route('admin.room.edit', $room->id)}}" class="btn btn-success btn-xs"><i class="fas fa-edit"></i></a>
                                 </td>
                             </tr>
                             @endforeach

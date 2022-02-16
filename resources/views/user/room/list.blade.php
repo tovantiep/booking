@@ -31,7 +31,7 @@ List Room
                                         <h5>€ {{$room->total_money}} / <span>Night</span></h5>
                                     </div>
                                     <div class="room-book">
-                                        <a href="#">Book now</a>
+                                        <a href="{{route('user.booking')}}">Book now</a>
                                     </div>
                                 </div>
                             </div>

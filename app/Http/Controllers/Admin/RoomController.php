@@ -13,7 +13,7 @@ class RoomController extends Controller
 {
     public function index()
     {
-       $rooms = Room::all();
+        $rooms = Room::all();
         return view('admin.room.list', compact('rooms'));
     }
     public function create()
@@ -23,7 +23,7 @@ class RoomController extends Controller
     } 
     public function store(CreateRoomRequest $request)
     { 
-       $room = new Room();
+        $room = new Room();
         $room->category_id = $request->category_id;
         $room->branch = $request->branch;
         $room->people = $request->people;
@@ -35,12 +35,12 @@ class RoomController extends Controller
         $path = 'admin/upload/';
         $get_name_image = $get_image->getClientOriginalName();
         $name_image = current(explode('.', $get_name_image));
-        $new_image = $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
+        $new_image = $name_image.rand(0, 99).'.'.$get_image->getClientOriginalExtension();
         $get_image->move($path, $new_image);
 
         $room->image = $new_image;
         $room->save();
-      return redirect()->route('admin.room.index')->with('success', 'Thêm thành công ');
+        return redirect()->route('admin.room.index')->with('success', 'Thêm thành công ');
     }
     public function edit($id)
     {
@@ -61,7 +61,7 @@ class RoomController extends Controller
         $get_image = $request->image;
         if ($get_image) {
             $path = 'admin/upload'.$room->image;
-            if(file_exists($path)){
+            if(file_exists($path)) {
                 unlink($path);
             }
             $path = 'admin/upload';

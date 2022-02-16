@@ -12,6 +12,13 @@ class AuthController extends Controller
 {
     public function login()
     {
+        if (Auth::check()) {
+            if (Auth::user()->role == User::ADMIN_ROLE) {
+                return redirect()->route('admin.home');
+              }elseif(Auth::user()->role == User::USER_ROLE){
+                return redirect()->route('user.home');
+              }
+        }
         return view('admin.login.index');
     }
     public function checkLogin(LoginRequest $request)

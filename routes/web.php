@@ -37,7 +37,7 @@ Route::group(['middleware' => ['verified']], function () {
                 Route::put('update/{id}',['uses'=>'Admin\CategoryController@update'])->name('update');
                 Route::get('delete/{id}',['uses'=>'Admin\CategoryController@delete'])->name('delete');
             });
-            Route::group(['prefix'=>'room','as'=>'room.'], function(){
+        Route::group(['prefix'=>'room','as'=>'room.'], function(){
                 Route::get('index',['uses'=>'Admin\RoomController@index'])->name('index');
                 Route::get('create',['uses'=>'Admin\RoomController@create'])->name('create');
                 Route::post('store',['uses'=>'Admin\RoomController@store'])->name('store');
@@ -47,13 +47,13 @@ Route::group(['middleware' => ['verified']], function () {
             });
         Route::get('home',['uses'=>'Admin\HomeController@home'])->name('home');
         });
-
+    }); 
+});
     Route::group(['prefix'=>'user','as'=>'user.'], function(){
         Route::get('home',['uses'=>'User\UserController@home'])->name('home');
         Route::get('room',['uses'=>'User\UserController@listRoom'])->name('room');
         Route::get('booking',['uses'=>'User\UserController@booking'])->name('booking');
         Route::get('logout',['uses'=>'User\UserController@logout'])->name('auth.logout');
     });
-}); 
-});
+
 

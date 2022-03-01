@@ -24,18 +24,6 @@ Create Room
                                     </select>
                                     <label for="inputFirstName">Category Name</label>
                                 </div>
-                               
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <div class="form-floating mb-3 mb-md-0">
-                                    <select class="form-control" @if($room->branch) selected @endif name="branch">
-                                        <option value="HN">Ha Noi</option>
-                                        <option value="SG">Sai Gon</option>
-                                    </select>
-                                    <label>Branch</label>
-                                </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating mb-3 mb-md-0">
@@ -87,19 +75,6 @@ Create Room
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating mb-3 mb-md-0">
-                                    <input class="form-control" name="image" type="file"/>
-                                    <label>Image</label>
-                                </div>
-                                @error('image')
-                                <div style="color:red ">
-                                   <i>{{$message}}</i> 
-                                </div>
-                            @enderror
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <div class="form-floating mb-3 mb-md-0">
                                     <input class="form-control" value="{{$room->description}}" name="description"/>
                                     <label >Description</label>
                                 </div>
@@ -109,10 +84,47 @@ Create Room
                                 </div>
                             @enderror
                             </div>
-                           
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3 mb-md-0">
+                                    <input class="form-control" name="image[]" type="file" multiple/>
+                                    <label>Image</label>
+                                </div>
+                                @error('image')
+                                <div style="color:red ">
+                                   <i>{{$message}}</i> 
+                                </div>
+                            @enderror
+                            </div>
+                        @php
+                            $name_image = explode('|', $room->image);
+                        @endphp 
+                    <div class="col-md-6">
+                        <div id="myCarousel" class="carousel slide" data-ride="carousel" style="background: grey">
+                            <ol class="carousel-indicators">
+                                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                            </ol>
+                            <div class="carousel-inner" align="center">
+                                @foreach($name_image as $key => $value)
+                                <div class="carousel-item {{$key == 0 ? 'active' : '' }}">
+                                    <img src="{{asset('admin/upload/'.$value)}}"  height="150px" width="200px">
+                                </div>
+                                @endforeach
+                            </div>
+                            <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev" style="color:black;">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only" style="color: black">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div>
                         </div>
                         <div class="mt-4 mb-0">
-                            <button class="btn btn-primary btn-block" type="submit">Update Room</button>
+                            <button class="btn btn-primary btn-xs" type="submit">Update Room</button>
                             <a href="{{route('admin.room.index')}}" class="btn btn-secondary btn-xs">Back</a>
                         </div>
                     </form>

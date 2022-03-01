@@ -25,7 +25,7 @@ class UpdateCategoryRequest extends FormRequest
     {
         return 
             [
-                'name' => 'required|unique:categories,name',
+                'name' => 'required|unique:categories,name,'.request()->id,
                 'image' => 'required|image|mimes:jpg,png,jpeg',
             ];
     }

@@ -23,18 +23,6 @@ Create Room
                                     </select>
                                     <label for="inputFirstName">Category Name</label>
                                 </div>
-                               
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <div class="form-floating mb-3 mb-md-0">
-                                    <select class="form-control" name="branch">
-                                        <option value="HN">Ha Noi</option>
-                                        <option value="SG">Sai Gon</option>
-                                    </select>
-                                    <label>Branch</label>
-                                </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating mb-3 mb-md-0">
@@ -86,7 +74,7 @@ Create Room
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating mb-3 mb-md-0">
-                                    <input class="form-control" name="image" type="file"/>
+                                    <input class="form-control" name="image[]" id="image" type="file" multiple>
                                     <label>Image</label>
                                 </div>
                                 @error('image')
@@ -94,7 +82,7 @@ Create Room
                                    <i>{{$message}}</i> 
                                 </div>
                             @enderror
-                            </div>
+                            </div> 
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-6">
@@ -108,7 +96,6 @@ Create Room
                                 </div>
                             @enderror
                             </div>
-                           
                         </div>
                         <div class="mt-4 mb-0">
                             <button class="btn btn-primary btn-block" type="submit">Create Room</button>

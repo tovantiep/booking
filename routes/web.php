@@ -50,6 +50,7 @@ use Illuminate\Support\Facades\Route;
                                     Route::get('create', ['uses'=>'Admin\RoomController@create'])->name('create');
                                     Route::post('store', ['uses'=>'Admin\RoomController@store'])->name('store');
                                     Route::get('edit/{id}', ['uses'=>'Admin\RoomController@edit'])->name('edit');
+                                    Route::get('detail/{id}', ['uses'=>'Admin\RoomController@detail'])->name('detail');
                                     Route::put('update/{id}', ['uses'=>'Admin\RoomController@update'])->name('update');
                                     Route::get('delete/{id}', ['uses'=>'Admin\RoomController@delete'])->name('delete');
                                 }

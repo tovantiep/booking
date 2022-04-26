@@ -23,23 +23,32 @@ class RoomController extends Controller
     } 
     public function store(CreateRoomRequest $request)
     { 
-        $room = new Room();
-        $room->category_id = $request->category_id;
-        $room->branch = $request->branch;
-        $room->people = $request->people;
-        $room->floor = $request->floor;
-        $room->number_room = $request->number_room;
-        $room->total_money = $request->total_money;
-        $room->description = $request->description;
-        $get_image = $request->image;
-        $path = 'admin/upload/';
-        $get_name_image = $get_image->getClientOriginalName();
-        $name_image = current(explode('.', $get_name_image));
-        $new_image = $name_image.rand(0, 99).'.'.$get_image->getClientOriginalExtension();
-        $get_image->move($path, $new_image);
-
-        $room->image = $new_image;
-        $room->save();
+        $image = array();
+        if($file = $request->file('image')) {
+            foreach($file as $file){
+                $image_name = md5(rand(1000, 10000));
+                $ext = strtolower($file->getClientOriginalExtension());
+                $image_full_name = $image_name.'.'.$ext;
+                $upload_path = 'admin/upload/';
+                $image_url = $image_full_name;
+                $file->move($upload_path, $image_full_name);
+                $image[] = $image_url; 
+            }
+        }
+                Room::insert(
+                    [
+                    'category_id' => $request->category_id,
+                    'people' => $request->people,
+                    'floor' => $request->floor,
+                    'number_room' => $request->number_room,
+                    'total_money' => $request->total_money,
+                    'description' => $request->description,
+                    'number_room' => $request->number_room,
+                    'number_room' => $request->number_room,
+                    'image' => implode('|', $image),
+                    ]
+                );
+       
         return redirect()->route('admin.room.index')->with('success', 'Thêm thành công ');
     }
     public function edit($id)
@@ -51,26 +60,26 @@ class RoomController extends Controller
     public function update(UpdateRoomRequest $request, $id)
     {
         $room = Room::findOrFail($id);
-        $room->category_id = $request->category_id;
-        $room->branch = $request->branch;
-        $room->people = $request->people;
-        $room->floor = $request->floor;
-        $room->number_room = $request->number_room;
-        $room->total_money = $request->total_money;
-        $room->description = $request->description;
-        $get_image = $request->image;
-        if ($get_image) {
-            $path = 'admin/upload'.$room->image;
-            if(file_exists($path)) {
-                unlink($path);
+        $image = array();
+        if($file = $request->file('image')) {
+            foreach($file as $file){
+                $image_name = md5(rand(1000, 10000));
+                $ext = strtolower($file->getClientOriginalExtension());
+                $image_full_name = $image_name.'.'.$ext;
+                $upload_path = 'admin/upload/';
+                $image_url = $image_full_name;
+                $file->move($upload_path, $image_full_name);
+                $image[] = $image_url; 
             }
-            $path = 'admin/upload';
-            $get_name_image = $get_image->getClientOriginalName();
-            $name_image = current(explode('.', $get_name_image));
-            $new_image = $name_image.rand(0, 99).'.'.$get_image->getClientOriginalExtension();
-            $get_image->move($path, $new_image);
-            $room->image = $new_image;
         }
+            $room->category_id = $request->category_id;
+            $room->people = $request->people;
+            $room->floor = $request->floor;
+            $room->number_room = $request->number_room;
+            $room->total_money = $request->total_money;
+            $room->description = $request->description;
+            $room->image = implode('|', $image);
+        
         $room->save();
          return redirect()->route('admin.room.index', $id)->with('success', 'Update thành công ');
     }
@@ -79,5 +88,11 @@ class RoomController extends Controller
         $room = Room::findOrFail($id);
         $room->delete();
         return redirect()->route('admin.room.index', $id)->with('success', 'Xóa thành công');
+    }
+    public function detail($id)
+    {
+        $room = Room::findOrFail($id);
+        $categories = Category::all();
+        return view('admin.room.detail', compact('room', 'categories'));
     }
 }

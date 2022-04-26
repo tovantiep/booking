@@ -26,9 +26,9 @@ class CreateRoomRequest extends FormRequest
         return [
             'people' => 'required|integer|between:1,10',
             'floor' => 'required|integer',
-            'number_room' => 'required|integer|digits_between:3,5',
+            'number_room' => 'required|unique:rooms,number_room|integer|digits_between:3,5',
             'total_money' => 'required|integer',
-            'image' => 'required|image|mimes:jpeg,png,jpg|mimetypes:image/jpeg,image/png,image/jpg',
+            'image' => 'required|max:4',
             'description' => 'required',
         ];
     }
@@ -41,11 +41,12 @@ class CreateRoomRequest extends FormRequest
             'floor.required' => 'Không được để trống',
             'floor.integer' => 'Định dạng không hợp lệ',
             'number_room.required' => 'Không được để trống',
+            'number_room.unique' => 'Tên phòng đã tồn tại',
             'number_room.digits_between:3,5' => 'Định dạng không hợp lệ',
             'total_money.required' => 'Không được để trống',
             'total_money.integer' => 'Định dạng không hợp lệ',
             'image.required' => 'Không được để trống',
-            'image.image' => 'Ảnh không đúng định dạng',
+            'image.max' => 'Không được để quá 4 ảnh',
             'description.required' => 'Không được để trống',
           ];
     }

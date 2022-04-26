@@ -3,7 +3,6 @@
 namespace App\Http\Requests\Room;
 
 use Illuminate\Foundation\Http\FormRequest;
-
 class UpdateRoomRequest extends FormRequest
 {
     /**
@@ -24,11 +23,12 @@ class UpdateRoomRequest extends FormRequest
     public function rules()
     {
         return [
-            'people' => 'required|integer|between:1,10',
+            'people' => 'required|integer|between:1,6',
             'floor' => 'required|integer',
-            'number_room' => 'required|integer|digits_between:3,5',
+            'number_room' => 'required|digits_between:3,5|unique:rooms,number_room,'.request()->id,
             'total_money' => 'required|integer',
             'description' => 'required',
+            'image' => 'required',
         ];
     }
     public function Messages()
@@ -40,6 +40,7 @@ class UpdateRoomRequest extends FormRequest
             'floor.required' => 'khong duoc de trong',
             'floor.integer' => 'dinh dang khong hop le',
             'number_room.required' => 'khong duoc de trong',
+            'number_room.unique' => 'Tên phòng đã tồn tại',
             'number_room.digits_between:3,5' => 'dinh dang khong hop le',
             'total_money.required' => 'khong duoc de trong',
             'total_money.integer' => 'dinh dang khong hop le',
